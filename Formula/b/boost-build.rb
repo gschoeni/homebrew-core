@@ -1,8 +1,10 @@
 class BoostBuild < Formula
   desc "C++ build system"
   homepage "https://www.boost.org/build/"
-  url "https://github.com/boostorg/build/archive/refs/tags/boost-1.88.0.tar.gz"
-  sha256 "a131c25bfe7c1b1e20da89a4c6e90a58a4bc55b361ae8c10199bb68b280aab96"
+  # url "https://github.com/boostorg/build/archive/refs/tags/boost-1.89.0.tar.gz"
+  url "https://archives.boost.io/release/1.89.0/source/boost_1_89_0_rc1.tar.gz"
+  version "1.89.0.rc1"
+  sha256 "9de758db755e8330a01d995b0a24d09798048400ac25c03fc5ea9be364b13c93"
   license "BSL-1.0"
   version_scheme 1
   head "https://github.com/boostorg/build.git", branch: "develop"
@@ -27,6 +29,7 @@ class BoostBuild < Formula
   conflicts_with "b2-tools", because: "both install `b2` binaries"
 
   def install
+    cd "tools/build"
     system "./bootstrap.sh"
     system "./b2", "--prefix=#{prefix}", "install"
   end
