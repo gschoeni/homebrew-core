@@ -2,7 +2,7 @@ class Povray < Formula
   desc "Persistence Of Vision RAYtracer (POVRAY)"
   homepage "https://www.povray.org/"
   license "AGPL-3.0-or-later"
-  revision 13
+  revision 14
   head "https://github.com/POV-Ray/povray.git", branch: "master"
 
   stable do
@@ -52,6 +52,9 @@ class Povray < Formula
   depends_on "openexr"
 
   uses_from_macos "zlib"
+
+  # Workaround for Xcode 16.4, issue ref: https://github.com/POV-Ray/povray/issues/479
+  patch :DATA
 
   def install
     ENV.cxx11
