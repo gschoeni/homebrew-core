@@ -1,8 +1,10 @@
 class BoostBcp < Formula
   desc "Utility for extracting subsets of the Boost library"
   homepage "https://www.boost.org/doc/tools/bcp/"
-  url "https://github.com/boostorg/boost/releases/download/boost-1.88.0/boost-1.88.0-b2-nodocs.tar.xz"
-  sha256 "ad9ce2c91bc0977a7adc92d51558f3b9c53596bb88246a280175ebb475da1762"
+  # url "https://github.com/boostorg/boost/releases/download/boost-1.89.0/boost-1.89.0-b2-nodocs.tar.xz"
+  url "https://archives.boost.io/release/1.89.0/source/boost_1_89_0_rc1.tar.gz"
+  version "1.89.0.rc1"
+  sha256 "9de758db755e8330a01d995b0a24d09798048400ac25c03fc5ea9be364b13c93"
   license "BSL-1.0"
   head "https://github.com/boostorg/boost.git", branch: "master"
 
