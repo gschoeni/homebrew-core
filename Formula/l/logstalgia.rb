@@ -4,7 +4,7 @@ class Logstalgia < Formula
   url "https://github.com/acaudwell/Logstalgia/releases/download/logstalgia-1.1.4/logstalgia-1.1.4.tar.gz"
   sha256 "c049eff405e924035222edb26bcc6c7b5f00a08926abdb7b467e2449242790a9"
   license "GPL-3.0-or-later"
-  revision 7
+  revision 8
 
   no_autobump! because: :requires_manual_review
 
@@ -48,6 +48,7 @@ class Logstalgia < Formula
     system "autoreconf", "--force", "--install", "--verbose" if build.head?
     system "./configure", "--disable-silent-rules",
                           "--with-boost-libdir=#{Formula["boost"].opt_lib}",
+                          "--without-boost-system", # FIXME: https://github.com/acaudwell/Logstalgia/issues/40
                           "--without-x",
                           *std_configure_args
     system "make"
