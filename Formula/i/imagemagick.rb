@@ -4,6 +4,7 @@ class Imagemagick < Formula
   url "https://imagemagick.org/archive/releases/ImageMagick-7.1.2-0.tar.xz"
   sha256 "edc13694c2f27554b36dc4817d80284f52c07c31e1ef8b88c8a4902a723dd643"
   license "ImageMagick"
+  revision 1
   head "https://github.com/ImageMagick/ImageMagick.git", branch: "main"
 
   livecheck do
