@@ -5,6 +5,7 @@ class Mkvtoolnix < Formula
   mirror "https://fossies.org/linux/misc/mkvtoolnix-94.0.tar.xz"
   sha256 "babbcff2362c9dd00b2e79336eff83fad177603a51a458ef1fa421b27fbc4703"
   license "GPL-2.0-or-later"
+  revision 1
 
   livecheck do
     url "https://mkvtoolnix.download/sources/"
@@ -55,6 +56,10 @@ class Mkvtoolnix < Formula
   conflicts_with cask: "mkvtoolnix"
 
   def install
+    # Workaround for Boost 1.89.0 until fixed upstream
+    # Issue ref: https://codeberg.org/mbunkus/mkvtoolnix/issues/6143
+    boost_workaround_args = %w[ax_cv_boost_system=yes --without-boost-system]
+
     # Remove bundled libraries
     rm_r(buildpath.glob("lib/*") - buildpath.glob("lib/{avilib,librmff}*"))
 
@@ -73,7 +78,8 @@ class Mkvtoolnix < Formula
     extra_libs.chop!
 
     system "./autogen.sh" if build.head?
-    system "./configure", "--with-boost=#{Formula["boost"].opt_prefix}",
+    system "./configure", *boost_workaround_args,
+                          "--with-boost=#{Formula["boost"].opt_prefix}",
                           "--with-docbook-xsl-root=#{Formula["docbook-xsl"].opt_prefix}/docbook-xsl",
                           "--with-extra-includes=#{extra_includes}",
                           "--with-extra-libs=#{extra_libs}",
