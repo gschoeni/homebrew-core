@@ -45,6 +45,12 @@ class Colmap < Formula
     depends_on "mesa"
   end
 
+  # Fix build with Boost 1.89.0, pr ref: https://github.com/colmap/colmap/pull/3553
+  patch do
+    url "https://github.com/colmap/colmap/commit/4995ee6ab747fa34372359f1e12f85908bae88b1.patch?full_index=1"
+    sha256 "e6112f87997213aabf5a24be8e76a7368b72eee4e96dcd23a28659c5d4292be1"
+  end
+
   def install
     ENV.append_path "CMAKE_PREFIX_PATH", Formula["qt@5"].prefix
 
