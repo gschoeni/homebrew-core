@@ -4,7 +4,7 @@ class Libphonenumber < Formula
   url "https://github.com/google/libphonenumber/archive/refs/tags/v9.0.11.tar.gz"
   sha256 "80a53c5da67c6240e15ca9cbb2cf263e9875fd37415464892b5cd1a00b1e2dba"
   license "Apache-2.0"
-  revision 1
+  revision 2
 
   livecheck do
     url :stable
@@ -27,6 +27,12 @@ class Libphonenumber < Formula
   depends_on "boost"
   depends_on "icu4c@77"
   depends_on "protobuf"
+
+  # Fix build with Boost 1.89.0, pr ref: https://github.com/google/libphonenumber/pull/3903
+  patch do
+    url "https://github.com/google/libphonenumber/commit/72c1023fbf00fc48866acab05f6ccebcae7f3213.patch?full_index=1"
+    sha256 "6bce9d77b45f35a84ef39831bf2cca793b11aa7b92bd6d71000397d3176f0345"
+  end
 
   def install
     ENV.append_to_cflags "-Wno-sign-compare" # Avoid build failure on Linux.
