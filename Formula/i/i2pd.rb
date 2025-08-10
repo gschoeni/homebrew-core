@@ -4,6 +4,7 @@ class I2pd < Formula
   url "https://github.com/PurpleI2P/i2pd/archive/refs/tags/2.57.0.tar.gz"
   sha256 "e2327f816d92a369eaaf9fd1661bc8b350495199e2f2cb4bfd4680107cd1d4b4"
   license "BSD-3-Clause"
+  revision 1
 
   bottle do
     sha256 cellar: :any,                 arm64_sequoia: "17d7aec839b3a8641b2c40e084d459a787368d3090438ef57603038555504d0c"
@@ -22,6 +23,11 @@ class I2pd < Formula
   uses_from_macos "zlib"
 
   def install
+    # Workaround for Boost 1.89.0 until upstream fix.
+    # Issue ref: https://github.com/PurpleI2P/i2pd/issues/2218
+    inreplace "Makefile.homebrew", " -lboost_system ", " "
+    ENV.append "CXXFLAGS", "-include boost/asio/deadline_timer.hpp"
+
     args = %W[
       DEBUG=no
       HOMEBREW=1
