@@ -1,9 +1,9 @@
 class Druid < Formula
   desc "High-performance, column-oriented, distributed data store"
   homepage "https://druid.apache.org/"
-  url "https://dlcdn.apache.org/druid/33.0.0/apache-druid-33.0.0-bin.tar.gz"
-  mirror "https://archive.apache.org/dist/druid/33.0.0/apache-druid-33.0.0-bin.tar.gz"
-  sha256 "5ee5ddbcc2273834af8a18dd173b2a04b9a911cb7ce516279db605788abd7d79"
+  url "https://dlcdn.apache.org/druid/34.0.0/apache-druid-34.0.0-bin.tar.gz"
+  mirror "https://archive.apache.org/dist/druid/34.0.0/apache-druid-34.0.0-bin.tar.gz"
+  sha256 "cb94b1f26b9b6fe5c4a8fc6584f2faee8775915724d8cf8892f40ffc2cab6690"
   license "Apache-2.0"
 
   livecheck do
@@ -16,6 +16,7 @@ class Druid < Formula
   end
 
   depends_on "zookeeper" => :test
+  depends_on "bash"
   depends_on "openjdk@17" # JDK 21 issue: https://github.com/apache/druid/issues/17429
 
   # check https://github.com/apache/druid/blob/master/docs/development/extensions-core/mysql.md#install-mysql-connectorj
