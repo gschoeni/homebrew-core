@@ -3,7 +3,7 @@ class Snap < Formula
   homepage "https://snapcraft.io/"
   url "https://github.com/canonical/snapd/releases/download/2.70/snapd_2.70.vendor.tar.xz"
   version "2.70"
-  sha256 "208c4356e17e96f25f8e5d4cc9c5494157099d15c091a530bb4f260aae9cf88b"
+  sha256 "4092c7e02d9d03c4c3c0546a0cddcff288ffffe484cd872f7df7565ab1428dbf"
   license "GPL-3.0-only"
 
   livecheck do
