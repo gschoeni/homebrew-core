@@ -21,16 +21,20 @@ class Hypre < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "9eea76ecc19f0455d9a8416aa615626f67c77d6792ae173b1d6944ceecb1c2c3"
   end
 
-  depends_on "gcc" # for gfortran
+  depends_on "cmake" => :build
   depends_on "open-mpi"
+  depends_on "openblas"
 
   def install
-    cd "src" do
-      system "./configure", "--prefix=#{prefix}",
-                            "--with-MPI",
-                            "--enable-bigint"
-      system "make", "install"
-    end
+    system "cmake", "-S", "src", "-B", "build",
+                    "-DBUILD_SHARED_LIBS=ON",
+                    "-DHYPRE_ENABLE_BIGINT=ON",
+                    "-DHYPRE_ENABLE_HYPRE_BLAS=OFF",
+                    "-DHYPRE_ENABLE_HYPRE_LAPACK=OFF",
+                    "-DHYPRE_ENABLE_MPI=ON",
+                    *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
